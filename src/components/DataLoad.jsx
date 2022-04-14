@@ -1,5 +1,6 @@
-import React from 'react'
+import React , {useEffect, useState} from 'react'
 import { DataGrid } from '@mui/x-data-grid';
+import axios from "axios";
 
 const columns = [
   { field: 'id', headerName: 'Sl no.', width: 90 },
@@ -8,24 +9,117 @@ const columns = [
     headerName: 'Business Code',
     width: 150,
     editable: true,
+  },
+  {
+    field: 'cust_number',
+    headerName: 'Cust Number',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'clear_date',
+    headerName: 'Clear Date',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'buisness_year',
+    headerName: 'Business Year',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'doc_id',
+    headerName: 'Doc Id',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'posting_date',
+    headerName: 'Posting Date',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'document_create_date',
+    headerName: 'Document Create Date',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'due_in_date',
+    headerName: 'Due In Date',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'invoice_currency',
+    headerName: 'Invoice Currency',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'document_type',
+    headerName: 'Document Type',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'posting_id',
+    headerName: 'Posting Id',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'total_open_amount',
+    headerName: 'Total Open Amount',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'baseline_create_date',
+    headerName: 'Baseline Create Date',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'cust_payment_terms',
+    headerName: 'Cust Payment Terms',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'invoice_id',
+    headerName: 'Invoice Id',
+    width: 150,
+    editable: true,
   }
+
 ];
-var rows=[]
-
-async function fetchMovies() {
-  const response = await fetch("http://localhost:8080/HRC20582W_Maanas/Fetchservlet");
-  const data = await response.json();
-  rows=data;
-}
-
-            //  fetch("http://localhost:8080/HRC20582W_Maanas/Fetchservlet")
-            // .then(response => response.json())
-            // .then(data => {
-            //     rows=data;
-            //     console.log(rows)
-            // })
 
 export default function DataLoad() {
+
+  const [data,setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error,setError] = useState(null);
+
+  useEffect(() =>{
+    getdata()
+  },[])
+
+  async function getdata() {
+    await axios('http://localhost:8080/hrc/Fetchservlet')
+    .then(response => {
+      setData(response.data)
+    })
+    .catch( error => {
+      console.error("Error Fetching data:",error);
+      setError(error)
+    })
+    .finally(() =>{
+      setLoading(false);
+    })
+  }
 
   return (
     <div style={{height:'71vh'}}>
@@ -47,7 +141,7 @@ export default function DataLoad() {
         </div>
         <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
-                        rows={rows}
+                        rows={data}
                         columns={columns}
                         pageSize={5}
                         rowsPerPageOptions={[5]}
