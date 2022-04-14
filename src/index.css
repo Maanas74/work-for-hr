@@ -1,0 +1,60 @@
+
+*{
+  margin: 0%;
+  padding: 0%;
+  color: white;
+}
+
+/* header css */
+
+.header{
+  display: flex;
+  background-color: rgb(44,66,80);
+  height: 13vh;
+  margin-bottom: 2%;
+
+}
+
+.ph1{
+  padding: 20px;
+  position: relative;
+}
+
+.ph2{
+  padding: 20px;
+  position: relative;
+  left: 22%;
+}
+
+ .ph3{
+  font-family: Arial, sans-serif, Helvetica;
+  font-size: large;
+  position: relative;
+  top: 75%;
+  left: -33%;
+} 
+
+
+
+/* dataloading css */
+
+.bt1,.bt2,.bt3,.bt4{
+  display:inline;
+  margin-left: 2%;
+}
+
+
+/* Footer css */
+
+
+.foot{
+  display: flex;
+  background-color: rgb(44,66,80);
+  height: 5.7vh;
+  margin-top: 2%;
+  padding-top: 1.2%;
+  justify-content: center;
+}
+
+
+
